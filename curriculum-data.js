@@ -1048,7 +1048,7 @@ const curriculumData = {
                 {
                     id: 2,
                     title: "Day 2: Anomaly Detection - Unstructured Data",
-                    icon: "fas fa-image",
+                    icon: "fas fa-images",
                     sessions: [
                         {
                             time: "Mattina",
@@ -1292,7 +1292,7 @@ const curriculumData = {
                 {
                     id: 4,
                     title: "Day 4: Polish and Present POCs",
-                    icon: "fas fa-presentation",
+                    icon: "fas fa-chalkboard-teacher",
                     sessions: [
                         {
                             time: "Mattina & Pomeriggio",
