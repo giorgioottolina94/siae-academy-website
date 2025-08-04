@@ -71,6 +71,10 @@
             padding: 80px 0;
             text-align: center;
             color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero h1 {
@@ -84,11 +88,13 @@
             font-size: 1.3rem;
             margin-bottom: 40px;
             opacity: 0.9;
+            max-width: 800px;
         }
 
         .hero-stats {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 60px;
             margin-top: 60px;
         }
@@ -176,17 +182,73 @@
         }
 
         .day-card {
-            border-bottom: 1px solid #f0f0f0;
-            padding: 30px;
+            border: 1px solid #e8e8e8;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
         }
 
-        .day-card:last-child {
-            border-bottom: none;
+        .day-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .day-card.hackathon {
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 10%, #ff6b6b 100%);
             color: white;
+            border-color: #ff6b6b;
+        }
+
+        .day-card-header {
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fafafa;
+            border-bottom: 1px solid #e8e8e8;
+            transition: background-color 0.3s ease;
+        }
+
+        .day-card-header:hover {
+            background: #f0f0f0;
+        }
+
+        .day-card-header.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .day-card.hackathon .day-card-header {
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .day-card.hackathon .day-card-header:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .day-card.hackathon .day-card-header.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .day-card-content {
+            display: none;
+            padding: 30px;
+        }
+
+        .day-card-content.active {
+            display: block;
+        }
+
+        .day-expand-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .day-card-header.active .day-expand-icon {
+            transform: rotate(180deg);
         }
 
         .day-card.hackathon .day-title,
@@ -207,33 +269,48 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        .day-header {
+        .day-header-info {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
         }
 
         .day-icon {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
-            margin-right: 20px;
+            font-size: 1rem;
+            margin-right: 15px;
         }
 
         .day-card.hackathon .day-icon {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .day-card-header.active .day-icon {
             background: rgba(255, 255, 255, 0.2);
         }
 
+        .day-card.hackathon .day-card-header.active .day-icon {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
         .day-title {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: #333;
+        }
+
+        .day-card-header.active .day-title {
+            color: white;
+        }
+
+        .day-card.hackathon .day-title {
+            color: white;
         }
 
         .session {
@@ -308,6 +385,48 @@
             margin: 2px;
         }
 
+        .materials-section {
+            background: #f8f9ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .materials-section h5 {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .materials-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .materials-list li {
+            color: #555;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            padding-left: 0;
+            line-height: 1.4;
+        }
+
+        .day-card.hackathon .materials-section {
+            background: rgba(255, 255, 255, 0.15);
+            border-left-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .day-card.hackathon .materials-section h5 {
+            color: white;
+        }
+
+        .day-card.hackathon .materials-list li {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
         .hackathon-details {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
@@ -352,13 +471,41 @@
                 padding: 20px;
             }
 
-            .day-card {
+            .day-card-header {
+                padding: 15px 20px;
+            }
+
+            .day-card-content {
                 padding: 20px;
+            }
+
+            .day-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+                margin-right: 12px;
+            }
+
+            .day-title {
+                font-size: 1.1rem;
             }
 
             .session-content {
                 margin-left: 0;
                 padding-left: 15px;
+            }
+
+            .materials-section {
+                padding: 12px;
+                margin-top: 12px;
+            }
+
+            .materials-section h5 {
+                font-size: 0.85rem;
+            }
+
+            .materials-list li {
+                font-size: 0.8rem;
             }
         }
 
@@ -487,6 +634,19 @@
             }
         }
 
+        function toggleDay(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.day-expand-icon');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                header.classList.remove('active');
+            } else {
+                content.classList.add('active');
+                header.classList.add('active');
+            }
+        }
+
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
@@ -499,6 +659,18 @@
             return '<div>' + tags.map(tag => `<span class="tag">${tag}</span>`).join('') + '</div>';
         }
 
+        function createMaterialsHTML(materials) {
+            if (!materials || materials.length === 0) return '';
+            return `
+                <div class="materials-section">
+                    <h5>📚 Materiali Disponibili:</h5>
+                    <ul class="materials-list">
+                        ${materials.map(material => `<li>${material}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+
         function createContentHTML(content) {
             return content.map(item => {
                 let html = `
@@ -506,6 +678,7 @@
                         <h4>${item.title}</h4>
                         <p>${item.description}</p>
                         ${createTagsHTML(item.tags)}
+                        ${createMaterialsHTML(item.materials)}
                 `;
                 
                 if (item.details) {
@@ -541,13 +714,18 @@
             const hackathonClass = day.isHackathon ? ' hackathon' : '';
             return `
                 <div class="day-card${hackathonClass}">
-                    <div class="day-header">
-                        <div class="day-icon">
-                            <i class="${day.icon}"></i>
+                    <div class="day-card-header" onclick="toggleDay(this)">
+                        <div class="day-header-info">
+                            <div class="day-icon">
+                                <i class="${day.icon}"></i>
+                            </div>
+                            <div class="day-title">${day.title}</div>
                         </div>
-                        <div class="day-title">${day.title}</div>
+                        <i class="fas fa-chevron-down day-expand-icon"></i>
                     </div>
-                    ${day.sessions.map(session => createSessionHTML(session)).join('')}
+                    <div class="day-card-content">
+                        ${day.sessions.map(session => createSessionHTML(session)).join('')}
+                    </div>
                 </div>
             `;
         }
@@ -574,11 +752,19 @@
             const html = curriculumData.weeks.map(week => createWeekHTML(week)).join('');
             container.innerHTML = html;
             
-            // Auto-expand first week
+            // Auto-expand first week and first day
             setTimeout(() => {
                 const firstWeek = document.querySelector('.week-header');
                 if (firstWeek) {
                     toggleWeek(firstWeek);
+                    
+                    // After expanding the week, expand the first day
+                    setTimeout(() => {
+                        const firstDay = document.querySelector('.day-card-header');
+                        if (firstDay) {
+                            toggleDay(firstDay);
+                        }
+                    }, 150);
                 }
             }, 100);
         }
